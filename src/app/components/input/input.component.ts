@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { concatMap } from 'rxjs';
 
 @Component({
   selector: 'app-input',
@@ -19,12 +21,24 @@ export class InputComponent implements OnInit {
   @Input('placeholder') placeholder: string = '';
   errorMessage = '';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.control.valueChanges.subscribe(() => {
-      this.setErrorMessage();
-    });
+    this.control.valueChanges
+      // .pipe(
+      //   concatMap((value) =>
+      //     this.http.get(`https://jsonplaceholder.typicode.com/posts/${value}`)
+      //   )
+      // )
+      .subscribe(
+        (response) => {
+          console.log('response is ', response);
+          this.setErrorMessage();
+        },
+        (error) => {
+          console.log('error is ', error);
+        }
+      );
   }
 
   setErrorMessage() {

@@ -1,0 +1,49 @@
+<div class="login row">
+  <div class="col-lg-4 d-flex justify-content-center align-items-center h-100">
+    <div class="">
+      <mat-card class="">
+        <div class="p-4">
+          <form [formGroup]="loginForm" (onSubmit)="login()">
+            <mat-card-title>Login</mat-card-title>
+            <mat-card-content>
+              <app-input
+                type="email"
+                label="Email"
+                controlName="email"
+                [control]="$any(getControl('email'))"
+                placeholder="Ex.john@winchester.com"
+              ></app-input>
+              <app-input
+                type="password"
+                label="Password"
+                controlName="password"
+                [control]="$any(getControl('password'))"
+                [minLength]="3"
+                [maxLength]="6"
+              ></app-input>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" (click)="login()">
+                Login
+              </button>
+              <div class="px-2 mt-4">
+                Don't have an account
+                <span
+                  [routerLink]="['/register']"
+                  routerLinkActive="router-link-active"
+                >
+                  <b>register here</b>
+                </span>
+              </div>
+            </mat-card-actions>
+          </form>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="col-lg-8 login-right-box">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <h1>Daffodil</h1>
+    </div>
+  </div>
+</div>
