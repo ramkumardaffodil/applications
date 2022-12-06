@@ -16,4 +16,13 @@ export class AuthService {
   register(payload: IRegisterPayload) {
     return this.http.post(`${this.apiUrl}/sign-up`, payload);
   }
+  getUserDetail() {
+    return JSON.parse(localStorage.getItem('userId') as unknown as any);
+  }
+  cacheUserDetail(data: any) {
+    const { userId, accessToken, refreshToken } = data;
+    localStorage.setItem('userId', JSON.stringify(userId));
+    localStorage.setItem('accessToken', JSON.stringify(accessToken));
+    localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
+  }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 import authActions from 'src/app/store/actions/auth';
 
 @Component({
@@ -11,7 +13,12 @@ import authActions from 'src/app/store/actions/auth';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store<any>) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<any>,
+    private translate: TranslateService,
+    private toasterService: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -32,6 +39,13 @@ export class RegisterComponent implements OnInit {
   }
   register() {
     const { email, password } = this.registerForm.value;
-    this.store.dispatch(authActions.registerInitiate({ email, password }));
+    if (this.registerForm.valid) {
+      this.store.dispatch(authActions.registerInitiate({ email, password }));
+    } else {
+      this.toasterService.error(this.translate.instant('ERRORS.INVALID_FORM'));
+    }
+  }
+  selectLanguage(value: string) {
+    this.translate.use(value);
   }
 }

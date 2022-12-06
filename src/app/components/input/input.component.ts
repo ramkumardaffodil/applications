@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { concatMap } from 'rxjs';
 
 @Component({
   selector: 'app-input',
@@ -19,42 +18,42 @@ export class InputComponent implements OnInit {
   @Input('maxLength') maxLength: Number = 0;
   @Input('label') label: string = '';
   @Input('placeholder') placeholder: string = '';
+  errorValue: Number = 0;
+
   errorMessage = '';
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.control.valueChanges
-      // .pipe(
-      //   concatMap((value) =>
-      //     this.http.get(`https://jsonplaceholder.typicode.com/posts/${value}`)
-      //   )
-      // )
-      .subscribe(
-        (response) => {
-          console.log('response is ', response);
-          this.setErrorMessage();
-        },
-        (error) => {
-          console.log('error is ', error);
-        }
-      );
+    this.control.valueChanges.subscribe(
+      (response) => {
+        console.log('response is ', response);
+        this.setErrorMessage();
+      },
+      (error) => {
+        console.log('error is ', error);
+      }
+    );
   }
 
   setErrorMessage() {
     this.errorMessage = '';
     if (this.control.hasError('min')) {
-      this.errorMessage = `Min value for ${this.label} is ${this.min}`;
+      this.errorValue = this.min;
+      this.errorMessage = `ERRORS.MIN_VALUE_FOR_${this.label}_IS`;
     } else if (this.control.hasError('max')) {
-      this.errorMessage = `Max value for ${this.label} is ${this.max}`;
+      this.errorValue = this.max;
+      this.errorMessage = `ERRORS.MAX_VALUE_FOR_${this.label}_IS`;
     } else if (this.control.hasError('minlength')) {
-      this.errorMessage = `Min length for ${this.label} is ${this.minLength}`;
+      this.errorValue = this.minLength;
+      this.errorMessage = `ERRORS.MIN_LENGTH_FOR_${this.label}_IS`;
     } else if (this.control.hasError('maxlength')) {
-      this.errorMessage = `Max length for ${this.label} is ${this.maxLength}`;
+      this.errorValue = this.maxLength;
+      this.errorMessage = `ERRORS.MAX_LENGTH_FOR_${this.label}_IS`;
     } else if (this.control.hasError('email')) {
-      this.errorMessage = `${this.label} is not valid`;
+      this.errorMessage = `ERRORS.${this.label}_IS_NOT_VALID`;
     } else if (this.control.hasError('pattern')) {
-      this.errorMessage = `${this.label} is not valid`;
+      this.errorMessage = `ERRORS.${this.label}_IS_NOT_VALID`;
     }
   }
 }

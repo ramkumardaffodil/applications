@@ -1,17 +1,17 @@
 <mat-form-field class="example-full-width">
-  <mat-label>{{ label }}</mat-label>
+  <mat-label>{{ "AUTH." + label | translate }}</mat-label>
   <input
     type="{{ type }}"
     matInput
     [formControl]="control"
     placeholder="{{ placeholder }}"
   />
-  <mat-hint>Errors appear instantly!</mat-hint>
+  <mat-hint>{{ "AUTH.ERRORS_APPEAR_ISNTANTLY" | translate }}!</mat-hint>
   <mat-error *ngIf="errorMessage && !control.hasError('required')">
-    {{ errorMessage }}
+    {{ errorMessage | translate : { value: errorValue } }}
   </mat-error>
 
   <mat-error *ngIf="control.hasError('required')">
-    {{ label }} is required
+    {{ "ERRORS." + label + "_IS_REQUIRED" | translate }}
   </mat-error>
 </mat-form-field>

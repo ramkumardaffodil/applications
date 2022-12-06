@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import authActions from 'src/app/store/actions/auth';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store<any>,
-    private toasterService: ToastrService
+    private toasterService: ToastrService,
+    private translate: TranslateService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +44,10 @@ export class LoginComponent implements OnInit {
       const { email, password } = this.loginForm.value;
       this.store.dispatch(authActions.loginInitiate({ email, password }));
     } else {
-      this.toasterService.error('Error', 'Error2');
+      this.toasterService.error(this.translate.instant('ERRORS.INVALID_FORM'));
     }
+  }
+  selectLanguage(value: string) {
+    this.translate.use(value);
   }
 }
