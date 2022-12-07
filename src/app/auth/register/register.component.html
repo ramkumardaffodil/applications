@@ -12,14 +12,14 @@
                 type="email"
                 label="EMAIL"
                 controlName="email"
-                [control]="$any(getControl('email'))"
+                [control]="getControl('email')"
                 placeholder="Ex.john@winchester.com"
               ></app-input>
               <app-input
                 type="password"
                 label="PASSWORD"
                 controlName="password"
-                [control]="$any(getControl('password'))"
+                [control]="getControl('password')"
                 [minLength]="3"
                 [maxLength]="6"
               ></app-input>

@@ -1,0 +1,17 @@
+/* .example-container {
+  width: 400px;
+  height: 200px;
+  margin: 10px;
+  border: 1px solid #555;
+} */
+.mat-drawer-config {
+  width: 15% !important;
+}
+.brand-icon-img {
+  width: 120px;
+  height: 120px;
+}
+.router-link-active {
+  cursor: pointer;
+  color: red;
+}

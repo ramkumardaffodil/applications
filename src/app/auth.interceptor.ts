@@ -15,7 +15,6 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    debugger;
     const unauthorizedUrl = ['sign-up', 'sign-in', 'token'];
     if (unauthorizedUrl.some((el) => request.url.includes(el))) {
       return next.handle(request);

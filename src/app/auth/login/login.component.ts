@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
 import authActions from 'src/app/store/actions/auth';
 import { ToastrService } from 'ngx-toastr';
@@ -27,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   getControl(controlName: string) {
-    return this.loginForm.get(controlName);
+    return this.loginForm.get(controlName) as FormControl;
   }
 
   initForm() {

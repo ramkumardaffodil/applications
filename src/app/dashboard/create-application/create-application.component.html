@@ -1,0 +1,63 @@
+<div class="m-4 p-4 row">
+  <div class="col-lg-6">
+    <app-input
+      type="text"
+      label="FIRST_NAME"
+      controlName="firstName"
+      [control]="getControl('firstName')"
+      placeholder="Ex.john"
+    ></app-input>
+  </div>
+  <div class="col-lg-6">
+    <app-input
+      type="text"
+      label="LAST_NAME"
+      controlName="lastName"
+      [control]="getControl('lastName')"
+      placeholder="Ex.john"
+    ></app-input>
+  </div>
+  <!-- gender simple drop down -->
+  <div class="col-lg-6">
+    <app-select
+      label="GENDER"
+      [options]="genderOptions"
+      controlName="gender"
+      [control]="getControl('gender')"
+    >
+    </app-select>
+  </div>
+  <!-- country select dropdown with search -->
+  <div class="col-lg-6">
+    <app-select
+      label="COUNTRY"
+      [options]="countryOptions"
+      [isMultiple]="true"
+      controlName="country"
+      [control]="getControl('country')"
+    >
+    </app-select>
+  </div>
+  <div class="col-lg-6">
+    <app-input
+      type="number"
+      label="PHONE_NUMBER"
+      controlName="phoneNumber"
+      [control]="getControl('phoneNumber')"
+      placeholder=""
+    ></app-input>
+  </div>
+  <div class="col-lg-6">
+    <app-multi-search-select
+      label="INTEREST"
+      [options]="interestOptions"
+      controlName="interest"
+      [control]="getControl('interest')"
+    ></app-multi-search-select>
+  </div>
+  <!-- favouriteLanguage radio button -->
+  <!-- salary range field -->
+  <!-- interest with drop down with search with multiselect -->
+  <!-- favourite players checkbox -->
+  <!-- terms and conditon check box -->
+</div>

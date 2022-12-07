@@ -24,6 +24,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthInterceptor } from './auth.interceptor';
 import { HomeComponent } from './dashboard/home/home.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CreateApplicationComponent } from './dashboard/create-application/create-application.component';
+import { SelectComponent } from './components/select/select.component';
+import { MultiSearchSelectComponent } from './components/multi-search-select/multi-search-select.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -37,6 +41,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     InputComponent,
     RegisterComponent,
     HomeComponent,
+    CreateApplicationComponent,
+    SelectComponent,
+    MultiSearchSelectComponent,
+    NotFoundComponent,
   ],
   imports: [
     NgxSpinnerModule,

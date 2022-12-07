@@ -1,21 +1,31 @@
 {
   "COMPANY_NAME": "डैफोडिल",
-  "AUTH": {
+  "LABELS": {
     "LOGIN_HERE": "यहां लॉगिन करें",
     "REGISTER_HERE": "यहां रजिस्टर करें",
     "LOGIN": "लॉग इन करें",
     "REGISTER": "पंजीकरण करें",
     "EMAIL": "ईमेल",
     "PASSWORD": "पासवर्ड",
-    "ERRORS_APPEAR_ISNTANTLY": "त्रुटियाँ तुरन्त प्रकट होती हैं",
     "DONT_HAVE_AN_ACCOUNT": "खाता नहीं है",
-    "ALREADY_HAVE_AN_ACCOUNT": "क्या आपके पास पहले से एक खाता मौजूद है"
+    "ALREADY_HAVE_AN_ACCOUNT": "क्या आपके पास पहले से एक खाता मौजूद है",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "PHONE_NUMBER": "Phone number",
+    "FAVOURITE_LANGUAGE": "Favourite language",
+    "GENDER": "Gender",
+    "COUNTRY": "Country",
+    "SALARY": "Salary",
+    "INTEREST": "Interest",
+    "FAVOURITE_PLAYERS": "Favourite players",
+    "TERMSANDCONDITION": "Terms and condition"
   },
   "LANGUAGE": {
     "ENGLISH": "अंग्रेज़ी",
     "HINDI": "हिन्दी"
   },
   "ERRORS": {
+    "ERRORS_APPEAR_ISNTANTLY": "त्रुटियाँ तुरन्त प्रकट होती हैं",
     "INVALID_FORM": "प्रपत्र अमान्य है",
     "EMAIL_IS_REQUIRED": "ईमेल की जरूरत है",
     "PASSWORD_IS_REQUIRED": "पासवर्ड की आवश्यकता है",
@@ -25,5 +35,10 @@
     "MAX_LENGTH_FOR_PASSWORD_IS": "पासवर्ड की अधिकतम लंबाई है {{value}}",
     "EMAIL_IS_NOT_VALID": "विद्युतडाक मान्य नहीं है",
     "PASSWORD_IS_NOT_VALID": "पासवर्ड मान्य नहीं हैd"
-  }
+  },
+  "SIDE_NAV": {
+    "APPLICATIONS": "Applications",
+    "CREATE_APPLICATION": "Create application"
+  },
+  "LOADING": "Loading"
 }

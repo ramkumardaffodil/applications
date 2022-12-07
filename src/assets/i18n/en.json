@@ -1,29 +1,47 @@
 {
   "COMPANY_NAME": "Daffodil",
-  "AUTH": {
+  "LABELS": {
     "LOGIN_HERE": "Login here",
     "REGISTER_HERE": "Register here",
     "LOGIN": "Login",
     "REGISTER": "Register",
     "EMAIL": "Email",
     "PASSWORD": "Password",
-    "ERRORS_APPEAR_ISNTANTLY": "Errors appear instantly",
     "DONT_HAVE_AN_ACCOUNT": "Don't have an account",
-    "ALREADY_HAVE_AN_ACCOUNT": "Already have an account"
+    "ALREADY_HAVE_AN_ACCOUNT": "Already have an account",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "PHONE_NUMBER": "Phone number",
+    "FAVOURITE_LANGUAGE": "Favourite language",
+    "GENDER": "Gender",
+    "COUNTRY": "Country",
+    "SALARY": "Salary",
+    "INTEREST": "Interest",
+    "FAVOURITE_PLAYERS": "Favourite players",
+    "TERMSANDCONDITION": "Terms and condition"
   },
   "LANGUAGE": {
     "ENGLISH": "English",
     "HINDI": "Hindi"
   },
   "ERRORS": {
+    "ERRORS_APPEAR_ISNTANTLY": "Errors appear instantly",
     "INVALID_FORM": "Form is invalid",
     "EMAIL_IS_REQUIRED": "Email is required",
     "PASSWORD_IS_REQUIRED": "Password is required",
+    "GENDER_IS_REQUIRED": "Gender is required",
+    "COUNTRY_IS_REQUIRED": "Country is required",
+    "INTEREST_IS_REQUIRED": "Interest is required",
     "MIN_VALUE_FOR_PASSWORD_IS": "Min value for password is {{value}}",
     "MAX_VALUE_FOR_PASSWORD_IS": "Max value for password is {{value}}",
     "MIN_LENGTH_FOR_PASSWORD_IS": "Min length for password is {{value}}",
     "MAX_LENGTH_FOR_PASSWORD_IS": "Max length for password is {{value}}",
     "EMAIL_IS_NOT_VALID": "Email is not valid",
     "PASSWORD_IS_NOT_VALID": "Password is not valid"
-  }
+  },
+  "SIDE_NAV": {
+    "APPLICATIONS": "Applications",
+    "CREATE_APPLICATION": "Create application"
+  },
+  "LOADING": "Loading"
 }

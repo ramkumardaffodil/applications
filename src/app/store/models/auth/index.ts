@@ -13,4 +13,7 @@ interface IAuthState {
   errorMessage?: string;
   loading?: boolean;
 }
-export { ILoginPayload, IRegisterPayload, IAuthState };
+interface IAppState {
+  auth: IAuthState;
+}
+export { ILoginPayload, IRegisterPayload, IAuthState, IAppState };

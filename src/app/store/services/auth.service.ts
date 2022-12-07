@@ -10,7 +10,6 @@ export class AuthService {
   apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
   login(payload: ILoginPayload) {
-    console.log('@@@@', payload);
     return this.http.post(`${this.apiUrl}/sign-in`, payload);
   }
   register(payload: IRegisterPayload) {

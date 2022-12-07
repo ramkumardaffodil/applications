@@ -1,9 +1,37 @@
-<router-outlet></router-outlet>
 <ngx-spinner
   bdColor="rgba(0, 0, 0, 0.8)"
   size="medium"
   color="#fff"
   type="timer"
   [fullScreen]="true"
-  ><p style="color: white">Loading...</p></ngx-spinner
+  ><p style="color: white">{{ "LOADING" | translate }}...</p></ngx-spinner
 >
+
+<mat-drawer-container class="h-100">
+  <mat-drawer #drawer mode="side" closed class="mat-drawer-config">
+    <div class="p-4">
+      <img
+        src="https://cdn.iconscout.com/icon/free/png-256/bmw-4-202746.png"
+        alt="brand-icon"
+        class="brand-icon-img"
+      />
+    </div>
+    <div class="px-4">
+      <h3
+        [routerLink]="['/applications']"
+        routerLinkActive="router-link-active"
+      >
+        {{ "SIDE_NAV.APPLICATIONS" | translate }}
+      </h3>
+      <h3
+        [routerLink]="['/create-application']"
+        routerLinkActive="router-link-active"
+      >
+        {{ "SIDE_NAV.CREATE_APPLICATION" | translate }}
+      </h3>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
