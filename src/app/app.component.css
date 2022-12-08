@@ -15,3 +15,8 @@
   cursor: pointer;
   color: red;
 }
+.language-select {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}

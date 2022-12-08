@@ -32,4 +32,7 @@ export class AppComponent {
       }
     });
   }
+  selectLanguage(value: string) {
+    this.translate.use(value);
+  }
 }

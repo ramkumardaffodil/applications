@@ -1,0 +1,10 @@
+<mat-checkbox
+  [formControl]="control"
+  [labelPosition]="labelPosition"
+  [disabled]="disabled"
+>
+  {{ "LABELS." + label | translate }}</mat-checkbox
+>
+<mat-error *ngIf="control.touched && control.hasError('required')">{{
+  "ERRORS." + label + "_IS_REQUIRED" | translate
+}}</mat-error>

@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { createApplication } from 'src/app/store/actions/application';
 
 @Component({
   selector: 'app-create-application',
@@ -12,6 +14,7 @@ import {
   styleUrls: ['./create-application.component.css'],
 })
 export class CreateApplicationComponent implements OnInit {
+  profileImageUrl: any;
   createApplicationForm!: FormGroup;
   genderOptions = [
     { value: 'male', viewValue: 'Male' },
@@ -37,7 +40,15 @@ export class CreateApplicationComponent implements OnInit {
     { value: 'volleyball', viewValue: 'Volley ball' },
   ];
 
-  constructor(private fb: FormBuilder) {}
+  favouriteLanguages = [
+    { value: 'c', viewValue: 'C' },
+    { value: 'js', viewValue: 'Javascript' },
+    { value: 'c++', viewValue: 'C++' },
+    { value: 'java', viewValue: 'Java' },
+    { value: 'python', viewValue: 'Python' },
+  ];
+
+  constructor(private fb: FormBuilder, private store: Store<any>) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -48,18 +59,50 @@ export class CreateApplicationComponent implements OnInit {
   initForm() {
     this.createApplicationForm = this.fb.group({
       firstName: ['', [Validators.required]],
-      lastName: [''],
+      lastName: ['', [Validators.required]],
+      motherName: ['', [Validators.required]],
+      fatherName: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      country: [''],
-      phoneNumber: [''],
-      favouriteLanguage: [''],
-      salary: [''],
-      interest: ['', [Validators.required]],
-      favouritePlayers: [''],
-      termsAndCondition: [''],
+      country: ['', [Validators.required]],
+      phoneNumber: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]{10}$')],
+      ],
+      favouriteLanguage: ['', [Validators.required]],
+      interests: ['', [Validators.required]],
+      termAndCondition: ['', [Validators.required]],
     });
   }
   getControl(controlName: string) {
     return this.createApplicationForm.get(controlName) as FormControl;
+  }
+  getBase64(file: any) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  }
+  async handleFileChange(event: any, file: any) {
+    this.profileImageUrl = await this.getBase64(file.files[0]);
+    // debugger;
+  }
+  createApplication() {
+    debugger;
+    if (this.createApplicationForm.valid) {
+      const formValue = this.createApplicationForm.value;
+      const userId = JSON.parse(localStorage.getItem('userId')!);
+      const payload = {
+        ...formValue,
+        favouriteLanguage: [formValue.favouriteLanguage],
+        userId: userId,
+        gender: [formValue.gender],
+      };
+      this.store.dispatch(createApplication({ data: payload }));
+      console.log('payload is ', payload);
+    } else {
+      this.createApplicationForm.markAllAsTouched();
+    }
   }
 }

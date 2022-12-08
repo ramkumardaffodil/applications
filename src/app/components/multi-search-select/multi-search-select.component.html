@@ -1,40 +1,14 @@
-<mat-form-field class="example-chip-list">
-  <mat-label
-    >{{ "LABELS." + label | translate }}
-    <ng-container
-      *ngIf="
-     control.errors?.['required'] &&
-optionCtrl.touched &&
- selectedOptions.length === 0"
-      >*</ng-container
-    >
-  </mat-label>
-  <mat-chip-list #chipList aria-label="Option selection">
-    <mat-chip *ngFor="let option of selectedOptions" (removed)="remove(option)">
-      {{ option.viewValue }}
-      <button matChipRemove>
-        <mat-icon>cancel</mat-icon>
-      </button>
-    </mat-chip>
-    <input
-      placeholder="New fruit..."
-      #dropdownInput
-      [formControl]="optionCtrl"
-      [matAutocomplete]="auto"
-      [matChipInputFor]="chipList"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      (matChipInputTokenEnd)="add($event)"
-    />
-  </mat-chip-list>
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+<mat-form-field class="example-full-width">
+  <mat-select
+    [formControl]="control"
+    [placeholder]="'LABELS.' + label | translate"
+    [multiple]="true"
+    #multiSelect
+  >
+    <ngx-mat-select-search [formControl]="optionCtrl"></ngx-mat-select-search>
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-      {{ option.viewValue }}
+      {{ option.viewValue | translate }}
     </mat-option>
-  </mat-autocomplete>
+  </mat-select>
+  <mat-error>{{ "ERRORS." + label + "_IS_REQUIRED" | translate }}</mat-error>
 </mat-form-field>
-<mat-error
-  *ngIf="control.errors?.['required'] &&
-optionCtrl.touched &&
- selectedOptions.length === 0"
-  >{{ "ERRORS." + label + "_IS_REQUIRED" | translate }}</mat-error
->

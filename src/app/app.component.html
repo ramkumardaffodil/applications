@@ -33,5 +33,9 @@
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>
+    <select class="language-select" #lang (change)="selectLanguage(lang.value)">
+      <option value="en">{{ "LANGUAGE.ENGLISH" | translate }}</option>
+      <option value="hin">{{ "LANGUAGE.HINDI" | translate }}</option>
+    </select>
   </mat-drawer-content>
 </mat-drawer-container>

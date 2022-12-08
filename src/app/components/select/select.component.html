@@ -1,8 +1,8 @@
 <mat-form-field class="example-full-width">
   <mat-label>{{ "LABELS." + label | translate }}</mat-label>
   <mat-select [multiple]="multiple" [formControl]="control">
-    <mat-option *ngFor="let option of options" [value]="option.value">
-      {{ option.viewValue }}
+    <mat-option *ngFor="let option of options" [value]="option">
+      {{ option.viewValue | translate }}
     </mat-option>
   </mat-select>
   <mat-error *ngIf="control.hasError('required')">

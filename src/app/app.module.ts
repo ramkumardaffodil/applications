@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { RegisterComponent } from 'src/app/auth/register/register.component';
-import { EffectsModule } from '@ngrx/effects';
+import { createEffect, EffectsModule } from '@ngrx/effects';
 import { LoginComponent } from './auth/login/login.component';
 import { InputComponent } from './components/input/input.component';
 import { AuthEffect } from './store/effects/auth';
@@ -28,7 +28,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CreateApplicationComponent } from './dashboard/create-application/create-application.component';
 import { SelectComponent } from './components/select/select.component';
 import { MultiSearchSelectComponent } from './components/multi-search-select/multi-search-select.component';
-
+import { RadioButtonsComponent } from './components/radio-buttons/radio-buttons.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import applicationReducer from './store/reducers/application';
+import { ApplicationEffect } from './store/effects/application';
+// import { MatSelectModule } from '@angular/material/select';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -44,6 +48,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CreateApplicationComponent,
     SelectComponent,
     MultiSearchSelectComponent,
+    RadioButtonsComponent,
+    CheckboxComponent,
     NotFoundComponent,
   ],
   imports: [
@@ -58,10 +64,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     StoreModule.forRoot(
       {
         auth: authReducer,
+        application: applicationReducer,
       },
       {}
     ),
-    EffectsModule.forRoot([AuthEffect]),
+    EffectsModule.forRoot([AuthEffect, ApplicationEffect]),
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

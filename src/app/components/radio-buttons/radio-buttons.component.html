@@ -1,0 +1,22 @@
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  [ngClass]="order ? 'example-radio-group-row' : 'example-radio-group-column'"
+  [formControl]="control"
+>
+  <label
+    id="example-radio-group-label"
+    [ngClass]="control.touched && control.hasError('required') ? 'error' : ''"
+    >{{ "LABELS." + label | translate }}
+    <ng-container *ngIf="control.hasError('required')">*</ng-container>
+  </label>
+  <mat-radio-button
+    class="example-radio-button"
+    *ngFor="let option of options"
+    [value]="option"
+  >
+    {{ option.viewValue | translate }}
+  </mat-radio-button>
+  <mat-error *ngIf="control.touched && control.hasError('required')">{{
+    "ERRORS." + label + "_IS_REQUIRED" | translate
+  }}</mat-error>
+</mat-radio-group>

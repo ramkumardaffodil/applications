@@ -10,11 +10,10 @@ import { IsAuthGuard } from './is-auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, canActivate: [IsAuthGuard] },
+  { path: 'login', component: LoginComponent },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [IsAuthGuard],
   },
   { path: 'home', component: HomeComponent, canActivate: [IsAuthGuard] },
   {

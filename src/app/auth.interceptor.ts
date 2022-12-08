@@ -19,8 +19,9 @@ export class AuthInterceptor implements HttpInterceptor {
     if (unauthorizedUrl.some((el) => request.url.includes(el))) {
       return next.handle(request);
     }
+    const token = JSON.parse(localStorage.getItem('accessToken')!);
     const updatedRequest = request.clone({
-      headers: request.headers.append('authorization', 'Bearer token'),
+      headers: request.headers.append('authorization', `Bearer ${token}`),
     });
 
     return next.handle(updatedRequest);

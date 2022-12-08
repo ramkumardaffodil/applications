@@ -1,63 +1,136 @@
-<div class="m-4 p-4 row">
-  <div class="col-lg-6">
-    <app-input
-      type="text"
-      label="FIRST_NAME"
-      controlName="firstName"
-      [control]="getControl('firstName')"
-      placeholder="Ex.john"
-    ></app-input>
-  </div>
-  <div class="col-lg-6">
-    <app-input
-      type="text"
-      label="LAST_NAME"
-      controlName="lastName"
-      [control]="getControl('lastName')"
-      placeholder="Ex.john"
-    ></app-input>
-  </div>
-  <!-- gender simple drop down -->
-  <div class="col-lg-6">
-    <app-select
-      label="GENDER"
-      [options]="genderOptions"
-      controlName="gender"
-      [control]="getControl('gender')"
-    >
-    </app-select>
-  </div>
-  <!-- country select dropdown with search -->
-  <div class="col-lg-6">
-    <app-select
-      label="COUNTRY"
-      [options]="countryOptions"
-      [isMultiple]="true"
-      controlName="country"
-      [control]="getControl('country')"
-    >
-    </app-select>
-  </div>
-  <div class="col-lg-6">
-    <app-input
-      type="number"
-      label="PHONE_NUMBER"
-      controlName="phoneNumber"
-      [control]="getControl('phoneNumber')"
-      placeholder=""
-    ></app-input>
-  </div>
-  <div class="col-lg-6">
-    <app-multi-search-select
-      label="INTEREST"
-      [options]="interestOptions"
-      controlName="interest"
-      [control]="getControl('interest')"
-    ></app-multi-search-select>
-  </div>
-  <!-- favouriteLanguage radio button -->
-  <!-- salary range field -->
-  <!-- interest with drop down with search with multiselect -->
-  <!-- favourite players checkbox -->
-  <!-- terms and conditon check box -->
+<div class="m-2 p-2">
+  <mat-card>
+    <form class="p-4" (submit)="createApplication()">
+      <div class="row">
+        <div class="col-lg-12 pb-3">
+          <div class="d-flex justify-content-center">
+            <div
+              *ngIf="!(profileImageUrl && profileImageUrl.length)"
+              (click)="file.click()"
+              class="rounded-circle"
+              style="
+                width: 100px;
+                height: 100px;
+                background-color: rgb(242, 0, 255);
+              "
+            ></div>
+            <input
+              #file
+              type="file"
+              hidden
+              (change)="handleFileChange($event, file)"
+            />
+            <img
+              *ngIf="profileImageUrl && profileImageUrl.length"
+              [src]="profileImageUrl"
+              alt="user-image"
+              class="rounded-circle"
+              width="100"
+              height="100"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <app-input
+            type="text"
+            label="FIRST_NAME"
+            controlName="firstName"
+            [control]="getControl('firstName')"
+            placeholder="Ex.john"
+          ></app-input>
+        </div>
+        <div class="col-lg-6">
+          <app-input
+            type="text"
+            label="LAST_NAME"
+            controlName="lastName"
+            [control]="getControl('lastName')"
+            placeholder="Ex.john"
+          ></app-input>
+        </div>
+        <div class="col-lg-6">
+          <app-input
+            type="text"
+            label="FATHER_NAME"
+            controlName="fatherName"
+            [control]="getControl('fatherName')"
+            placeholder="Ex.john"
+          ></app-input>
+        </div>
+        <div class="col-lg-6">
+          <app-input
+            type="text"
+            label="MOTHER_NAME"
+            controlName="motherName"
+            [control]="getControl('motherName')"
+            placeholder="Ex.john"
+          ></app-input>
+        </div>
+        <!-- gender simple drop down -->
+        <div class="col-lg-6">
+          <app-select
+            label="GENDER"
+            [options]="genderOptions"
+            controlName="gender"
+            [control]="getControl('gender')"
+          >
+          </app-select>
+        </div>
+        <!-- country select dropdown with search -->
+        <div class="col-lg-6">
+          <app-select
+            label="COUNTRY"
+            [options]="countryOptions"
+            [isMultiple]="true"
+            controlName="country"
+            [control]="getControl('country')"
+          >
+          </app-select>
+        </div>
+        <div class="col-lg-6">
+          <app-input
+            type="tel"
+            label="PHONE_NUMBER"
+            controlName="phoneNumber"
+            [control]="getControl('phoneNumber')"
+            placeholder=""
+          ></app-input>
+        </div>
+        <!-- interest with drop down with search with multiselect -->
+        <div class="col-lg-6">
+          <app-multi-search-select
+            label="INTEREST"
+            [options]="interestOptions"
+            controlName="interests"
+            [control]="getControl('interests')"
+          ></app-multi-search-select>
+        </div>
+        <!-- favouriteLanguage radio button -->
+        <div class="col-lg-12">
+          <app-radio-buttons
+            label="FAVOURITE_LANGUAGE"
+            [options]="favouriteLanguages"
+            controlName="favouriteLanguage"
+            [control]="getControl('favouriteLanguage')"
+            [order]="false"
+          ></app-radio-buttons>
+        </div>
+        <!-- favourite players checkbox -->
+
+        <!-- salary range field -->
+        <div class="col-lg-6">
+          <app-checkbox
+            label="TERMS_AND_CONDITION"
+            controlName="termAndCondition"
+            [control]="getControl('termAndCondition')"
+            labelPosition="after"
+          >
+          </app-checkbox>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-4">
+        {{ "SIDE_NAV.CREATE_APPLICATION" | translate }}
+      </button>
+    </form>
+  </mat-card>
 </div>

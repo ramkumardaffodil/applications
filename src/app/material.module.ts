@@ -8,6 +8,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 const modules = [
   MatCardModule,
@@ -16,9 +19,12 @@ const modules = [
   MatSnackBarModule,
   MatSidenavModule,
   MatSelectModule,
+  NgxMatSelectSearchModule,
   MatAutocompleteModule,
   MatChipsModule,
   MatIconModule,
+  MatRadioModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({
