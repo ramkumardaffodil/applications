@@ -8,7 +8,7 @@ import {
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import authActions from 'src/app/store/actions/auth';
+import { registerInitiate } from 'src/app/store/actions/auth';
 
 @Component({
   selector: 'app-register',
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
   register() {
     const { email, password } = this.registerForm.value;
     if (this.registerForm.valid) {
-      this.store.dispatch(authActions.registerInitiate({ email, password }));
+      this.store.dispatch(registerInitiate({ email, password }));
     } else {
       this.toasterService.error(this.translate.instant('ERRORS.INVALID_FORM'));
     }

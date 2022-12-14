@@ -2,6 +2,8 @@ import { createReducer, on } from '@ngrx/store';
 import {
   createApplicationFailed,
   createApplicationSuccess,
+  getAllApplicationFailed,
+  getAllApplicationsSuccess,
 } from '../../actions/application';
 
 const initialState = {
@@ -12,14 +14,24 @@ const initialState = {
 const applicationReducer = createReducer(
   initialState,
   on(createApplicationSuccess, (state: any, { application }) => {
-    debugger;
     return {
       ...state,
       applications: [...state.applications, application],
     };
   }),
   on(createApplicationFailed, (state, data) => {
-    debugger;
+    return {
+      ...state,
+      error: data.error,
+    };
+  }),
+  on(getAllApplicationsSuccess, (state: any, { data }) => {
+    return {
+      ...state,
+      applications: [...state.applications, ...data],
+    };
+  }),
+  on(getAllApplicationFailed, (state, data) => {
     return {
       ...state,
       error: data.error,

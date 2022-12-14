@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, mergeMap, of, map } from 'rxjs';
+import { catchError, mergeMap, of, map, exhaustMap } from 'rxjs';
 import {
   createApplicationFailed,
   createApplicationSuccess,
+  getAllApplicationFailed,
+  getAllApplicationsSuccess,
 } from '../../actions/application';
-import { CREATE_APPLICATION_INITIATE } from '../../actions/application/types';
+import {
+  CREATE_APPLICATION_INITIATE,
+  GET_ALL_APPLICATION,
+} from '../../actions/application/types';
 import { ApplicationService } from '../../services/application/application.service';
 
 @Injectable()
@@ -18,12 +23,23 @@ export class ApplicationEffect {
     this.action.pipe(
       ofType(CREATE_APPLICATION_INITIATE),
       mergeMap((action: any) => {
-        debugger;
         return this.application.createApplication(action.data).pipe(
           map((data: any) => createApplicationSuccess(data)),
-          catchError((error) => of(createApplicationFailed(error)))
+          catchError((error) => createApplicationFailed(error))
         );
       })
+    )
+  );
+
+  getAllApplications = createEffect(() =>
+    this.action.pipe(
+      ofType(GET_ALL_APPLICATION),
+      mergeMap(() =>
+        this.application.getAllApplication().pipe(
+          map((data) => getAllApplicationsSuccess(data)),
+          catchError((error) => getAllApplicationFailed(error))
+        )
+      )
     )
   );
 }

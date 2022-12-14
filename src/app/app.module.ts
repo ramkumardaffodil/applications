@@ -32,6 +32,9 @@ import { RadioButtonsComponent } from './components/radio-buttons/radio-buttons.
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import applicationReducer from './store/reducers/application';
 import { ApplicationEffect } from './store/effects/application';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TableComponent } from './components/table/table.component';
+import { ApplicationsComponent } from './dashboard/applications/applications.component';
 // import { MatSelectModule } from '@angular/material/select';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -50,6 +53,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MultiSearchSelectComponent,
     RadioButtonsComponent,
     CheckboxComponent,
+    TableComponent,
+    ApplicationsComponent,
     NotFoundComponent,
   ],
   imports: [
@@ -68,6 +73,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       },
       {}
     ),
+    StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([AuthEffect, ApplicationEffect]),
     ToastrModule.forRoot(),
     TranslateModule.forRoot({

@@ -86,10 +86,8 @@ export class CreateApplicationComponent implements OnInit {
   }
   async handleFileChange(event: any, file: any) {
     this.profileImageUrl = await this.getBase64(file.files[0]);
-    // debugger;
   }
   createApplication() {
-    debugger;
     if (this.createApplicationForm.valid) {
       const formValue = this.createApplicationForm.value;
       const userId = JSON.parse(localStorage.getItem('userId')!);

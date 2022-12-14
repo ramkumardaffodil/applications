@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatTableModule } from '@angular/material/table';
 
 const modules = [
   MatCardModule,
@@ -25,6 +26,7 @@ const modules = [
   MatIconModule,
   MatRadioModule,
   MatCheckboxModule,
+  MatTableModule,
 ];
 
 @NgModule({

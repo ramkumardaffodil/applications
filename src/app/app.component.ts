@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { getUserDetail } from './store/actions/auth';
 import { selectAuthState } from './store/selectors/auth';
 import { AuthService } from './store/services/auth.service';
 
@@ -31,6 +32,7 @@ export class AppComponent {
         this.drawer.open();
       }
     });
+    this.store.dispatch(getUserDetail());
   }
   selectLanguage(value: string) {
     this.translate.use(value);
