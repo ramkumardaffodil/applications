@@ -6,18 +6,30 @@ import { Injectable } from '@angular/core';
 export class CacheService {
   constructor() {}
   getUserId() {
-    return JSON.parse(localStorage.getItem('userId') || '');
+    return localStorage.getItem('userId')
+      ? JSON.parse(localStorage.getItem('userId')!)
+      : '';
   }
   getAccessToken() {
-    return JSON.parse(localStorage.getItem('accessToken') || '');
+    return localStorage.getItem('accessToken')
+      ? JSON.parse(localStorage.getItem('accessToken')!)
+      : '';
   }
   getRefreshToken() {
-    return JSON.parse(localStorage.getItem('refreshToken') || '');
+    return localStorage.getItem('refreshToken')
+      ? JSON.parse(localStorage.getItem('refreshToken')!)
+      : '';
   }
   cacheUserDetail(data: any) {
     const { userId, accessToken, refreshToken } = data;
     localStorage.setItem('userId', JSON.stringify(userId));
     localStorage.setItem('accessToken', JSON.stringify(accessToken));
     localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
+  }
+  removeUserDetail() {
+    const userDetails = ['userId', 'accessToken', 'refreshToken'];
+    userDetails.forEach((detail: string) => {
+      localStorage.removeItem(detail);
+    });
   }
 }

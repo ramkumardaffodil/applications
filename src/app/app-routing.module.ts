@@ -15,7 +15,7 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-  { path: 'home', component: HomeComponent, canActivate: [IsAuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [] },
   {
     path: 'applications',
     component: ApplicationsComponent,
@@ -23,6 +23,11 @@ const routes: Routes = [
   },
   {
     path: 'create-application',
+    component: CreateApplicationComponent,
+    canActivate: [IsAuthGuard],
+  },
+  {
+    path: 'edit-application/:rowId',
     component: CreateApplicationComponent,
     canActivate: [IsAuthGuard],
   },

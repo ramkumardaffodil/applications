@@ -50,9 +50,10 @@
   },
   "SIDE_NAV": {
     "APPLICATIONS": "एप्लिकेशनश",
-    "CREATE_APPLICATION": "एप्लिकेशन बनाएं"
+    "CREATE_APPLICATION": "एप्लिकेशन बनाएं",
+    "LOGOUT": "लॉग आउट"
   },
-  "LOADING": "Loading",
+  "LOADING": "लॉग आउट",
   "C": "सी",
   "C++": "सी++",
   "Javascript": "जावास्क्रिप्ट",

@@ -8,7 +8,7 @@
 >
 
 <mat-drawer-container class="h-100">
-  <mat-drawer #drawer mode="side" closed class="mat-drawer-config">
+  <mat-drawer #drawer mode="side" closed class="mat-drawer-config left-root">
     <div class="p-4">
       <img
         src="https://cdn.iconscout.com/icon/free/png-256/bmw-4-202746.png"
@@ -16,7 +16,7 @@
         class="brand-icon-img"
       />
     </div>
-    <div class="px-4">
+    <div class="px-4 sidebar">
       <h3
         [routerLink]="['/applications']"
         routerLinkActive="router-link-active"
@@ -29,13 +29,20 @@
       >
         {{ "SIDE_NAV.CREATE_APPLICATION" | translate }}
       </h3>
+      <h3 (click)="logout()">{{ "SIDE_NAV.LOGOUT" | translate }}</h3>
     </div>
   </mat-drawer>
-  <mat-drawer-content>
-    <router-outlet></router-outlet>
-    <select class="language-select" #lang (change)="selectLanguage(lang.value)">
-      <option value="en">{{ "LANGUAGE.ENGLISH" | translate }}</option>
-      <option value="hin">{{ "LANGUAGE.HINDI" | translate }}</option>
-    </select>
+  <mat-drawer-content class="root">
+    <div>
+      <router-outlet></router-outlet>
+      <select
+        class="language-select"
+        #lang
+        (change)="selectLanguage(lang.value)"
+      >
+        <option value="en">{{ "LANGUAGE.ENGLISH" | translate }}</option>
+        <option value="hin">{{ "LANGUAGE.HINDI" | translate }}</option>
+      </select>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>

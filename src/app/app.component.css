@@ -1,3 +1,7 @@
+.mat-drawer-content {
+  overflow: hidden;
+}
+
 /* .example-container {
   width: 400px;
   height: 200px;
@@ -13,10 +17,30 @@
 }
 .router-link-active {
   cursor: pointer;
-  color: red;
+  color: #ff4081 !important;
+}
+.sidebar h3 {
+  cursor: pointer;
 }
 .language-select {
   position: absolute;
   top: 2rem;
   right: 2rem;
+}
+
+.root {
+  background-image: linear-gradient(
+    68.4deg,
+    rgba(248, 182, 204, 1) 0.5%,
+    rgba(192, 198, 230, 1) 49%,
+    rgba(225, 246, 240, 1) 99.8%
+  );
+}
+.left-root {
+  background-image: linear-gradient(
+    0deg,
+    rgba(248, 182, 204, 1) 10.5%,
+    rgba(192, 198, 230, 1) 69%,
+    rgba(225, 246, 240, 1) 99.8%
+  );
 }

@@ -1,10 +1,12 @@
-<div class="login row">
-  <div class="col-lg-4 d-flex justify-content-center align-items-center h-100">
+<div class="login row h-100">
+  <div class="col-lg-4 d-flex justify-content-center align-items-center">
     <div class="">
       <mat-card class="">
         <div class="p-4">
           <form [formGroup]="loginForm" (onSubmit)="login()">
-            <mat-card-title>{{ "AUTH.LOGIN_HERE" | translate }}</mat-card-title>
+            <mat-card-title class="app-pink">{{
+              "LABELS.LOGIN_HERE" | translate
+            }}</mat-card-title>
             <mat-card-content>
               <app-input
                 type="email"
@@ -23,16 +25,18 @@
               ></app-input>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-raised-button color="primary" (click)="login()">
-                {{ "AUTH.LOGIN" | translate }}
+              <button mat-stroked-button color="accent" (click)="login()">
+                {{ "LABELS.LOGIN" | translate }}
               </button>
               <div class="px-2 mt-4">
-                {{ "AUTH.DONT_HAVE_AN_ACCOUNT" | translate }}
+                {{ "LABELS.DONT_HAVE_AN_ACCOUNT" | translate }}
                 <span
                   [routerLink]="['/register']"
                   routerLinkActive="router-link-active"
                 >
-                  <b>{{ "AUTH.REGISTER_HERE" | translate }}</b>
+                  <b class="app-pink underline">{{
+                    "LABELS.REGISTER_HERE" | translate
+                  }}</b>
                 </span>
               </div>
             </mat-card-actions>
@@ -41,16 +45,7 @@
       </mat-card>
     </div>
   </div>
-  <div class="col-lg-8 login-right-box">
-    <div class="d-flex justify-content-end px-4">
-      <select #lang (change)="selectLanguage(lang.value)">
-        <option value="en">{{ "LANGUAGE.ENGLISH" | translate }}</option>
-        <option value="hin">{{ "LANGUAGE.HINDI" | translate }}</option>
-      </select>
-    </div>
-
-    <div class="d-flex justify-content-center align-items-center h-100">
-      <h1>{{ "COMPANY_NAME" | translate }}</h1>
-    </div>
+  <div class="col-lg-8 d-flex justify-content-center align-items-center">
+    <h1 class="app-pink">{{ "COMPANY_NAME" | translate }}</h1>
   </div>
 </div>

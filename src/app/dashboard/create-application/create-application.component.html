@@ -1,4 +1,4 @@
-<div class="m-2 p-2">
+<div class="create-application-container m-2 p-2">
   <mat-card>
     <form class="p-4" (submit)="createApplication()">
       <div class="row">
@@ -8,11 +8,7 @@
               *ngIf="!(profileImageUrl && profileImageUrl.length)"
               (click)="file.click()"
               class="rounded-circle"
-              style="
-                width: 100px;
-                height: 100px;
-                background-color: rgb(242, 0, 255);
-              "
+              style="width: 100px; height: 100px; background-color: #ff4081"
             ></div>
             <input
               #file
@@ -128,7 +124,7 @@
           </app-checkbox>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary mt-4">
+      <button type="submit" mat-stroked-button color="accent" class="mt-4">
         {{ "SIDE_NAV.CREATE_APPLICATION" | translate }}
       </button>
     </form>

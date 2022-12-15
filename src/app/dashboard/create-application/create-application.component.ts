@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { createApplication } from 'src/app/store/actions/application';
 
 @Component({
@@ -48,7 +49,11 @@ export class CreateApplicationComponent implements OnInit {
     { value: 'python', viewValue: 'Python' },
   ];
 
-  constructor(private fb: FormBuilder, private store: Store<any>) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<any>,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -97,6 +102,7 @@ export class CreateApplicationComponent implements OnInit {
         userId: userId,
         gender: [formValue.gender],
       };
+      this.spinner.show();
       this.store.dispatch(createApplication({ data: payload }));
       console.log('payload is ', payload);
     } else {

@@ -7,13 +7,13 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './store/services/auth.service';
+import { CacheService } from './shared/services/cache.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IsAuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private cache: CacheService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -23,14 +23,14 @@ export class IsAuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (
-      (this.auth.getUserDetail() &&
-        route.routeConfig?.path?.includes('login')) ||
+      (this.cache.getUserId() && route.routeConfig?.path?.includes('login')) ||
       route.routeConfig?.path?.includes('register')
     ) {
       this.router.navigateByUrl('/applications');
       return false;
     }
-    if (this.auth.getUserDetail()) return true;
+    if (this.cache.getUserId()) return true;
+    this.router.navigateByUrl('/login');
     return false;
   }
 }

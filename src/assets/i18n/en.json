@@ -50,12 +50,13 @@
   },
   "SIDE_NAV": {
     "APPLICATIONS": "Applications",
-    "CREATE_APPLICATION": "Create application"
+    "CREATE_APPLICATION": "Create application",
+    "LOGOUT": "Logout"
   },
   "LOADING": "Loading",
   "C": "C",
   "C++": "C++",
-  "Javascript": "Javasript",
+  "Javascript": "Javascript",
   "Java": "Java",
   "Python": "Python",
   "Male": "Male",

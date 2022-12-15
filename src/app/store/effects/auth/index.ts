@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { CacheService } from 'src/app/shared/services/cache.service';
 import {
@@ -25,7 +27,9 @@ export class AuthEffect {
     private action: Actions,
     private auth: AuthService,
     private router: Router,
-    private cache: CacheService
+    private cache: CacheService,
+    private toaster: ToastrService,
+    private spinner: NgxSpinnerService
   ) {}
   register = createEffect(() =>
     this.action.pipe(
@@ -35,10 +39,16 @@ export class AuthEffect {
           .register({ email: action.email, password: action.password })
           .pipe(
             map((data: any) => {
+              this.spinner.hide();
+              this.toaster.success('User register successfully');
               this.cache.cacheUserDetail(data);
+              this.router.navigateByUrl('/applications');
               return registerSuccess(data);
             }),
-            catchError((error) => registerError(error))
+            catchError((error) => {
+              this.spinner.hide();
+              return registerError(error);
+            })
           );
       })
     )
@@ -51,11 +61,16 @@ export class AuthEffect {
           .login({ email: action.email, password: action.password })
           .pipe(
             map((data) => {
+              this.spinner.hide();
+              this.toaster.success('User login successfully');
               this.cache.cacheUserDetail(data);
               this.router.navigateByUrl('/applications');
               return loginSuccess(data);
             }),
-            catchError((error) => loginError({ data: error }))
+            catchError((error) => {
+              this.spinner.hide();
+              return loginError({ data: error });
+            })
           )
       )
     )
@@ -66,11 +81,15 @@ export class AuthEffect {
       mergeMap(() =>
         this.auth.getUserDetail().pipe(
           map((data) => {
+            this.spinner.hide();
             this.cache.cacheUserDetail(data);
             this.router.navigateByUrl('/applications');
             return getUesrDetailSuccess(data);
           }),
-          catchError((error) => getUserDetailFailed(error))
+          catchError((error) => {
+            this.spinner.hide();
+            return getUserDetailFailed(error);
+          })
         )
       )
     )

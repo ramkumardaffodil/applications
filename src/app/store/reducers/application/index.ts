@@ -28,7 +28,7 @@ const applicationReducer = createReducer(
   on(getAllApplicationsSuccess, (state: any, { data }) => {
     return {
       ...state,
-      applications: [...state.applications, ...data],
+      applications: [...data],
     };
   }),
   on(getAllApplicationFailed, (state, data) => {

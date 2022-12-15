@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
   }
   login() {
     if (this.loginForm.valid) {
+      this.spinner.show();
       const { email, password } = this.loginForm.value;
       this.store.dispatch(loginInitiate({ email, password }));
     } else {

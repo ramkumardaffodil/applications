@@ -1,4 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -6,15 +16,30 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  @Input('displayedColumns') displayedColumns: any;
   @Input('dataSource') dataSource: any;
+  displayedColumns = [
+    'firstName',
+    'lastName',
+    'gender',
+    'country',
+    'phoneNumber',
+    'favouriteLanguage',
+    'termAndCondition',
+    'interests',
+    'action',
+  ];
+  pageSizeOptions: any[] = [5];
+  pageSize = 5;
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   viewColumns: any;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.viewColumns = this.displayedColumns.map((el: any) => el.value);
+    this.updateDataSource();
   }
+
   getValue(columnData: any) {
     let data = '';
     if (Array.isArray(columnData)) {
@@ -29,5 +54,22 @@ export class TableComponent implements OnInit {
       return data;
     }
     return columnData;
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    this.updateDataSource();
+  }
+  updateDataSource() {
+    this.dataSource = new MatTableDataSource(this.dataSource);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  matSortChange(event: any) {
+    // debugger;
+  }
+  edit(rowData: any) {
+    this.router.navigateByUrl(`/edit-application/${rowData._id}`);
+  }
+  delete(rowData: any) {
+    // debugger;
   }
 }

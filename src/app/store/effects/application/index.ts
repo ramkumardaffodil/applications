@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, mergeMap, of, map, exhaustMap } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { catchError, mergeMap, map } from 'rxjs';
 import {
   createApplicationFailed,
   createApplicationSuccess,
@@ -17,15 +19,24 @@ import { ApplicationService } from '../../services/application/application.servi
 export class ApplicationEffect {
   constructor(
     private action: Actions,
-    private application: ApplicationService
+    private application: ApplicationService,
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) {}
   createApplication = createEffect(() =>
     this.action.pipe(
       ofType(CREATE_APPLICATION_INITIATE),
       mergeMap((action: any) => {
         return this.application.createApplication(action.data).pipe(
-          map((data: any) => createApplicationSuccess(data)),
-          catchError((error) => createApplicationFailed(error))
+          map((data: any) => {
+            this.spinner.hide();
+            this.router.navigateByUrl('/applications');
+            return createApplicationSuccess(data);
+          }),
+          catchError((error) => {
+            this.spinner.hide();
+            return createApplicationFailed(error);
+          })
         );
       })
     )
@@ -36,8 +47,14 @@ export class ApplicationEffect {
       ofType(GET_ALL_APPLICATION),
       mergeMap(() =>
         this.application.getAllApplication().pipe(
-          map((data) => getAllApplicationsSuccess(data)),
-          catchError((error) => getAllApplicationFailed(error))
+          map((data) => {
+            this.spinner.hide();
+            return getAllApplicationsSuccess(data);
+          }),
+          catchError((error) => {
+            this.spinner.hide();
+            return getAllApplicationFailed(error);
+          })
         )
       )
     )

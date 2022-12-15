@@ -4,8 +4,8 @@
       <mat-card class="">
         <form (onSubmit)="register()" [formGroup]="registerForm">
           <div class="p-4">
-            <mat-card-title>{{
-              "AUTH.REGISTER_HERE" | translate
+            <mat-card-title class="app-pink">{{
+              "LABELS.REGISTER_HERE" | translate
             }}</mat-card-title>
             <mat-card-content>
               <app-input
@@ -28,18 +28,20 @@
               <button
                 type="submit"
                 (click)="register()"
-                mat-raised-button
-                color="primary"
+                mat-stroked-button
+                color="accent"
               >
-                {{ "AUTH.REGISTER" | translate }}
+                {{ "LABELS.REGISTER" | translate }}
               </button>
               <div class="px-2 mt-4">
-                {{ "AUTH.ALREADY_HAVE_AN_ACCOUNT" | translate }}
+                {{ "LABELS.ALREADY_HAVE_AN_ACCOUNT" | translate }}
                 <span
                   [routerLink]="['/login']"
                   routerLinkActive="router-link-active"
                 >
-                  <b>{{ "AUTH.LOGIN_HERE" | translate }}</b>
+                  <b class="underline app-pink">{{
+                    "LABELS.LOGIN_HERE" | translate
+                  }}</b>
                 </span>
               </div>
             </mat-card-actions>
@@ -48,16 +50,7 @@
       </mat-card>
     </div>
   </div>
-  <div class="col-lg-8 register-right-box">
-    <div class="d-flex justify-content-end px-4">
-      <select #lang (change)="selectLanguage(lang.value)">
-        <option value="en">{{ "LANGUAGE.ENGLISH" | translate }}</option>
-        <option value="hin">{{ "LANGUAGE.HINDI" | translate }}</option>
-      </select>
-    </div>
-
-    <div class="d-flex justify-content-center align-items-center h-100">
-      <h1>{{ "COMPANY_NAME" | translate }}</h1>
-    </div>
+  <div class="col-lg-8 d-flex justify-content-center align-items-center">
+    <h1 class="app-pink bold">{{ "COMPANY_NAME" | translate }}</h1>
   </div>
 </div>
