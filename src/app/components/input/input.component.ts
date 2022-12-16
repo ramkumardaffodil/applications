@@ -25,16 +25,9 @@ export class InputComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.control.valueChanges.subscribe(
-      (response) => {
-        // console.log('@@@@@@', this.control);
-        // console.log('response is ', response);
-        this.setErrorMessage();
-      },
-      (error) => {
-        console.log('error is ', error);
-      }
-    );
+    this.control.valueChanges.subscribe(() => {
+      this.setErrorMessage();
+    });
   }
 
   setErrorMessage() {

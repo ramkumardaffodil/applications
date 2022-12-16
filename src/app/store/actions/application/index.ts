@@ -5,6 +5,7 @@ import {
   ICreateApplicationSuccess,
   IGetUserDetailError,
   IGetUserDetailSuccess,
+  IRemoveApplication,
 } from '../../models/application';
 import {
   CREATE_APPLICATION_FAILED,
@@ -13,6 +14,12 @@ import {
   GET_ALL_APPLICATION,
   GET_ALL_APPLICATION_FAILED,
   GET_ALL_APPLICATION_SUCCESS,
+  REMOVE_APPLICATION,
+  REMOVE_APPLICATION_FAILED,
+  REMOVE_APPLICATION_SUCCESS,
+  UPDATE_APPLICATION_FAILED,
+  UPDATE_APPLICATION_INITIATE,
+  UPDATE_APPLICATION_SUCCESS,
 } from './types';
 
 const createApplication = createAction(
@@ -30,6 +37,21 @@ const createApplicationFailed = createAction(
   props<any>()
 );
 
+const updateApplication = createAction(
+  UPDATE_APPLICATION_INITIATE,
+  props<any>()
+);
+
+const updateApplicationSuccess = createAction(
+  UPDATE_APPLICATION_SUCCESS,
+  props<any>()
+);
+
+const updateApplicationFailed = createAction(
+  UPDATE_APPLICATION_FAILED,
+  props<any>()
+);
+
 const getAllApplications = createAction(GET_ALL_APPLICATION);
 
 const getAllApplicationsSuccess = createAction(
@@ -42,6 +64,18 @@ const getAllApplicationFailed = createAction(
   props<any>()
 );
 
+const removeApplication = createAction(
+  REMOVE_APPLICATION,
+  props<IRemoveApplication>()
+);
+const removeApplicationSuccess = createAction(
+  REMOVE_APPLICATION_SUCCESS,
+  props<any>()
+);
+const removeApplicationFailed = createAction(
+  REMOVE_APPLICATION_FAILED,
+  props<any>()
+);
 export {
   createApplication,
   createApplicationSuccess,
@@ -49,4 +83,10 @@ export {
   getAllApplications,
   getAllApplicationsSuccess,
   getAllApplicationFailed,
+  removeApplication,
+  removeApplicationSuccess,
+  removeApplicationFailed,
+  updateApplication,
+  updateApplicationSuccess,
+  updateApplicationFailed,
 };

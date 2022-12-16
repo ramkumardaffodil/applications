@@ -14,7 +14,8 @@ export class RadioButtonsComponent implements OnInit {
   @Input('order') order: boolean = false;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('first');
+  ngOnInit(): void {}
+  compare(optionValue: any, controlValue: any) {
+    return optionValue.value === controlValue.value?.value;
   }
 }

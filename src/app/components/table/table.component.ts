@@ -1,14 +1,15 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -17,6 +18,13 @@ import { Router } from '@angular/router';
 })
 export class TableComponent implements OnInit {
   @Input('dataSource') dataSource: any;
+
+  @Output() edit = new EventEmitter();
+  @Output() delete = new EventEmitter();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   displayedColumns = [
     'firstName',
     'lastName',
@@ -28,13 +36,11 @@ export class TableComponent implements OnInit {
     'interests',
     'action',
   ];
+
   pageSizeOptions: any[] = [5];
   pageSize = 5;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  viewColumns: any;
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.updateDataSource();
@@ -55,21 +61,24 @@ export class TableComponent implements OnInit {
     }
     return columnData;
   }
+
   ngOnChanges(changes: SimpleChanges) {
     this.updateDataSource();
   }
+
   updateDataSource() {
     this.dataSource = new MatTableDataSource(this.dataSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  matSortChange(event: any) {
-    // debugger;
+
+  matSortChange(event: any) {}
+
+  editApplication(rowData: any) {
+    this.edit.emit(rowData);
   }
-  edit(rowData: any) {
-    this.router.navigateByUrl(`/edit-application/${rowData._id}`);
-  }
-  delete(rowData: any) {
-    // debugger;
+
+  deleteApplication(rowData: any) {
+    this.delete.emit(rowData);
   }
 }

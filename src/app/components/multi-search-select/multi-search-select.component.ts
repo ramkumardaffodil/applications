@@ -48,4 +48,7 @@ export class MultiSearchSelectComponent implements OnInit {
       )
     );
   }
+  compareThem(o1: any, o2: any) {
+    return o1.value === o2.value;
+  }
 }

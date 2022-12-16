@@ -14,6 +14,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const modules = [
   MatCardModule,
@@ -31,6 +32,7 @@ const modules = [
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
+  MatDialogModule,
 ];
 
 @NgModule({

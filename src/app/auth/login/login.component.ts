@@ -32,20 +32,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.loginForm.valueChanges
-      .pipe(
-        map((data) =>
-          this.http.get('https://jsonplaceholder.typicode.com/todos/100')
-        )
-        // mergeAll()
-      )
-      .subscribe((response) => {
-        // this.http
-        //   .get('https://jsonplaceholder.typicode.com/todos/100')
-        //   .subscribe((resp2) => {
-        console.log('resp2 is ', response);
-        // });
-      });
   }
 
   getControl(controlName: string) {

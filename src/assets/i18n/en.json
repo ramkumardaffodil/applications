@@ -51,7 +51,8 @@
   "SIDE_NAV": {
     "APPLICATIONS": "Applications",
     "CREATE_APPLICATION": "Create application",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "EDIT_APPLICATION": "Update application"
   },
   "LOADING": "Loading",
   "C": "C",

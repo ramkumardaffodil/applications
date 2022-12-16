@@ -35,6 +35,7 @@ import { ApplicationEffect } from './store/effects/application';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TableComponent } from './components/table/table.component';
 import { ApplicationsComponent } from './dashboard/applications/applications.component';
+import { SharedModule } from './shared/shared.module';
 // import { MatSelectModule } from '@angular/material/select';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -58,6 +59,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NotFoundComponent,
   ],
   imports: [
+    SharedModule,
     NgxSpinnerModule,
     HttpClientModule,
     FormsModule,

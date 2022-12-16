@@ -125,7 +125,11 @@
         </div>
       </div>
       <button type="submit" mat-stroked-button color="accent" class="mt-4">
-        {{ "SIDE_NAV.CREATE_APPLICATION" | translate }}
+        {{
+          editMode
+            ? ("SIDE_NAV.EDIT_APPLICATION" | translate)
+            : ("SIDE_NAV.CREATE_APPLICATION" | translate)
+        }}
       </button>
     </form>
   </mat-card>

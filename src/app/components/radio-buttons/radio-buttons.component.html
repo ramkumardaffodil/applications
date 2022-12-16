@@ -13,6 +13,7 @@
     class="example-radio-button"
     *ngFor="let option of options"
     [value]="option"
+    [checked]="compare(option, control)"
   >
     {{ option.viewValue | translate }}
   </mat-radio-button>

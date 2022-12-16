@@ -5,9 +5,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { createApplication } from 'src/app/store/actions/application';
+import {
+  createApplication,
+  updateApplication,
+} from 'src/app/store/actions/application';
+import { selectApplications } from 'src/app/store/selectors/applications';
 
 @Component({
   selector: 'app-create-application',
@@ -49,33 +54,55 @@ export class CreateApplicationComponent implements OnInit {
     { value: 'python', viewValue: 'Python' },
   ];
 
+  data: any;
+  editMode = false;
+
   constructor(
     private fb: FormBuilder,
     private store: Store<any>,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.loadData();
     this.initForm();
-    this.createApplicationForm.valueChanges.subscribe((response) => {
-      console.log('value is', response);
+  }
+
+  loadData() {
+    this.route.params.subscribe((response: any) => {
+      if (response?.rowId) {
+        this.editMode = true;
+        this.store.select(selectApplications).subscribe((applications) => {
+          this.data = applications.filter(
+            (application) => application._id === response.rowId
+          )[0];
+        });
+      }
     });
   }
+
   initForm() {
     this.createApplicationForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      motherName: ['', [Validators.required]],
-      fatherName: ['', [Validators.required]],
-      gender: ['', [Validators.required]],
-      country: ['', [Validators.required]],
+      firstName: [this.data?.firstName || '', [Validators.required]],
+      lastName: [this.data?.lastName || '', [Validators.required]],
+      motherName: [this.data?.motherName || '', [Validators.required]],
+      fatherName: [this.data?.fatherName || '', [Validators.required]],
+      gender: [this.data?.gender[0] || '', [Validators.required]],
+      country: [this.data?.country || '', [Validators.required]],
       phoneNumber: [
-        '',
+        this.data?.phoneNumber || '',
         [Validators.required, Validators.pattern('^[0-9]{10}$')],
       ],
-      favouriteLanguage: ['', [Validators.required]],
-      interests: ['', [Validators.required]],
-      termAndCondition: ['', [Validators.required]],
+      favouriteLanguage: [
+        this.data?.favouriteLanguage[0] || '',
+        [Validators.required],
+      ],
+      interests: [this.data?.interests || '', [Validators.required]],
+      termAndCondition: [
+        this.data?.termAndCondition || '',
+        [Validators.required],
+      ],
     });
   }
   getControl(controlName: string) {
@@ -103,8 +130,12 @@ export class CreateApplicationComponent implements OnInit {
         gender: [formValue.gender],
       };
       this.spinner.show();
-      this.store.dispatch(createApplication({ data: payload }));
-      console.log('payload is ', payload);
+      if (this.editMode) {
+        payload['_id'] = this.data['_id'];
+        this.store.dispatch(updateApplication({ data: payload }));
+      } else {
+        this.store.dispatch(createApplication({ data: payload }));
+      }
     } else {
       this.createApplicationForm.markAllAsTouched();
     }

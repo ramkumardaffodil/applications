@@ -1,6 +1,10 @@
 <mat-form-field class="example-full-width">
   <mat-label>{{ "LABELS." + label | translate }}</mat-label>
-  <mat-select [multiple]="multiple" [formControl]="control">
+  <mat-select
+    [multiple]="multiple"
+    [formControl]="control"
+    [compareWith]="compareThem"
+  >
     <mat-option *ngFor="let option of options" [value]="option">
       {{ option.viewValue | translate }}
     </mat-option>

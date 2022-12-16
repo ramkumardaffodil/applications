@@ -15,4 +15,7 @@ export class SelectComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  compareThem(o1: any, o2: any) {
+    return o1.value === o2.value;
+  }
 }

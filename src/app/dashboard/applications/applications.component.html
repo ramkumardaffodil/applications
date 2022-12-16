@@ -1,1 +1,5 @@
-<app-table [dataSource]="dataSource"></app-table>
+<app-table
+  [dataSource]="dataSource"
+  (delete)="delete($event)"
+  (edit)="edit($event)"
+></app-table>

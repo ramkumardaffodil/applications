@@ -43,6 +43,5 @@ export class AppComponent {
     this.drawer.close();
     this.cache.removeUserDetail();
     this.router.navigateByUrl('/login');
-    // window.location.reload();
   }
 }

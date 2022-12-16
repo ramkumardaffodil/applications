@@ -4,6 +4,10 @@ import {
   createApplicationSuccess,
   getAllApplicationFailed,
   getAllApplicationsSuccess,
+  removeApplicationFailed,
+  removeApplicationSuccess,
+  updateApplicationFailed,
+  updateApplicationSuccess,
 } from '../../actions/application';
 
 const initialState = {
@@ -25,6 +29,17 @@ const applicationReducer = createReducer(
       error: data.error,
     };
   }),
+  on(updateApplicationSuccess, (state: any, { application }) => {
+    return {
+      ...state,
+    };
+  }),
+  on(updateApplicationFailed, (state, data) => {
+    return {
+      ...state,
+      error: data.error,
+    };
+  }),
   on(getAllApplicationsSuccess, (state: any, { data }) => {
     return {
       ...state,
@@ -35,6 +50,16 @@ const applicationReducer = createReducer(
     return {
       ...state,
       error: data.error,
+    };
+  }),
+  on(removeApplicationSuccess, (state, data) => {
+    return {
+      ...state,
+    };
+  }),
+  on(removeApplicationFailed, (state, data) => {
+    return {
+      ...state,
     };
   })
 );

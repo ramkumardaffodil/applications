@@ -1,5 +1,6 @@
 <mat-form-field class="example-full-width">
   <mat-select
+    [compareWith]="compareThem"
     [formControl]="control"
     [placeholder]="'LABELS.' + label | translate"
     [multiple]="true"

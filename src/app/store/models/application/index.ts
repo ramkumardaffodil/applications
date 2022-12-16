@@ -34,6 +34,10 @@ interface IApplicationState {
   applications: Array<ICreateApplicationSuccess>;
 }
 
+interface IRemoveApplication {
+  _id: string;
+}
+
 export {
   ICreateApplication,
   IOption,
@@ -42,4 +46,5 @@ export {
   IGetUserDetailSuccess,
   IGetUserDetailError,
   IApplicationState,
+  IRemoveApplication,
 };

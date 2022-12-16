@@ -21,7 +21,7 @@
         <th mat-header-cell *matHeaderCellDef>Action.</th>
         <td mat-cell *matCellDef="let element">
           <mat-icon
-            (click)="edit(element)"
+            (click)="editApplication(element)"
             class="app-pink pointer"
             aria-hidden="false"
             aria-label="Example home icon"
@@ -30,7 +30,7 @@
           >
           &nbsp;
           <mat-icon
-            (click)="delete(element)"
+            (click)="deleteApplication(element)"
             class="app-pink pointer"
             aria-hidden="false"
             aria-label="Example home icon"
